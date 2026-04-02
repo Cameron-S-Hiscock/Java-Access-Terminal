@@ -2,6 +2,7 @@ package inputPKG;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
 import javax.swing.JOptionPane;
 
@@ -9,11 +10,15 @@ import mainPKG.*;
 
 import terminalPKG.*;
 
-public class KeyInput {
+public class KeyInput implements KeyListener {
+	public static int keyCode;
+	public static char keyChar;
+	
 	//@Override
 	
 	public void keyPressed(KeyEvent e) {
-		int keyCode = e.getKeyCode();
+		keyCode = e.getKeyCode();
+		keyChar = e.getKeyChar();
 		switch(keyCode) {
 			case KeyEvent.VK_ENTER:
 				JOptionPane.showMessageDialog(null, "Text Logged", "Text Log", JOptionPane.INFORMATION_MESSAGE);
@@ -25,10 +30,10 @@ public class KeyInput {
 	}
 	
 	public void keyReleased(KeyEvent e) {
-		int keyCode = e.getKeyCode();
+		;
 	}
 	
 	public void keyTyped(KeyEvent e) {
-		int keyCode = e.getKeyCode();
+		;
 	}
 }
