@@ -5,9 +5,8 @@ import javax.swing.*;
 import java.util.*;
 import java.util.regex.*;
 
-import constantPKG.Constants;
 import mainPKG.*;
-
+import constantPKG.*;
 import userPKG.*;
 
 public class TermLog extends TermWin {
