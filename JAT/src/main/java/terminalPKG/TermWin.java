@@ -9,6 +9,7 @@ import mainPKG.*;
 import constantPKG.*;
 import inputPKG.*;
 import debugPKG.*;
+import inputPKG.*;
 
 public class TermWin extends JFrame {
 	public static int windowWidthPx = (int)Math.floor(Constants.SCREEN_WIDTH/2);
@@ -31,7 +32,8 @@ public class TermWin extends JFrame {
 		setSize(windowWidthPx,windowHeightPx);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLocationRelativeTo(null);
-		
+
+		termEnter.addKeyListener(KeyInput);
 		termEnter.setFocusable(true);
 		enterPanel.add(termEnter);
 		
