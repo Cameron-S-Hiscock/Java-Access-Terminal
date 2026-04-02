@@ -25,7 +25,8 @@ public class TermWin extends JFrame {
 	protected static int txtColumns = (windowWidthPx - 16) / 8;
 	
 	protected static JList<String> termLog = new JList<String>();
-	protected static DefaultListModel<String> termLogList = new DefaultListModel<String>();
+	protected static DefaultListModel<String> termLogListj = new DefaultListModel<String>();
+	protected static DefaultListModel<String> termLogListi = new DefaultListModel<String>(termLogListj);
 	
 	public TermWin() {
 		setTitle("Java Access Terminal");
@@ -53,7 +54,7 @@ public class TermWin extends JFrame {
 	public static void createGrid() {
 		for(int i = 0; i <= TermWin.txtRows; i++) {
 			for(int j = 0; j <= TermWin.txtColumns; j++) {
-				termLogList.add(i, "Blank");
+				termLogListi.add(i, termLogListj.add(j, "B"));
 			}
 		}
 	}
