@@ -42,13 +42,17 @@ public class TermWin extends JFrame {
 		termLog.setFocusable(false);
 		
 		logPanel.add(termLog);
+
+		createGrid();
 		
 		setVisible(true);
 	}
 	
 	public static void createGrid() {
-		for (int i = 0; i <= txtRows; i++) {
-			termLogList.add(i, "Blank");
+		for(int i = 0; i <= TermWin.txtRows; i++) {
+			for(int j = 0; j <= TermWin.txtColumns; j++) {
+				termLogList.add(i, "Blank");
+			}
 		}
 	}
 	
