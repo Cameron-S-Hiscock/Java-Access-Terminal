@@ -11,14 +11,14 @@ import mainPKG.*;
 import terminalPKG.*;
 
 public class KeyInput implements KeyListener {
-	public static int keyCode;
-	public static char keyChar;
+	public static KeyEvent e;
+	public static int keyCode = e.getKeyCode();
+	public static char keyChar = e.getKeyChar();
+	
 	
 	//@Override
 	
 	public void keyPressed(KeyEvent e) {
-		keyCode = e.getKeyCode();
-		keyChar = e.getKeyChar();
 		switch(keyCode) {
 			case KeyEvent.VK_ENTER:
 				JOptionPane.showMessageDialog(null, "Text Logged", "Text Log", JOptionPane.INFORMATION_MESSAGE);
