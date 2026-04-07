@@ -23,7 +23,7 @@ public class TermWin extends JFrame {
 	private static int txtColumns = (windowWidthPx - 16) / 8;
 	
 	private static String enterTxt = termEnter.getText();
-	protected static JTextArea termLog = new JTextArea();
+	protected static JTextArea termLog = new JTextArea(txtRows, txtColumns);
 	
 	public static String getEnterTxt() {
 		enterTxt = termEnter.getText();
