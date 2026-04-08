@@ -19,8 +19,8 @@ public class TermWin extends JFrame {
 	protected static JPanel enterPanel = new JPanel();
 	protected static JTextField termEnter = new JTextField(windowWidthGrid);
 	
-	private static int txtRows = (windowHeightPx - 32) / 20;
-	private static int txtColumns = (windowWidthPx - 16) / 8;
+	private static int txtRows = Math.floorDiv((windowHeightPx - 32), 20);
+	private static int txtColumns = Math.floorDiv((windowWidthPx - 16), 8);
 	
 	private static String enterTxt = termEnter.getText();
 	protected static JTextArea termLog = new JTextArea(txtRows, txtColumns);
@@ -69,8 +69,8 @@ public class TermWin extends JFrame {
 		TermWin.windowWidthGrid = Math.floorDiv(TermWin.windowWidthPx, 12);
 		TermWin.windowHeightGrid = Math.floorDiv(TermWin.windowHeightPx, 12);
 		
-		TermWin.txtRows = (TermWin.windowHeightPx - 32) / 20;
-		TermWin.txtColumns = (TermWin.windowWidthPx - 16) / 8;
+		TermWin.txtRows = Math.floorDiv((TermWin.windowHeightPx - 32), 20);
+		TermWin.txtColumns = Math.floorDiv((TermWin.windowWidthPx - 16), 8);
 		
 		TermWin.enterTxt = TermWin.termEnter.getText();
 		
