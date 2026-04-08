@@ -10,10 +10,10 @@ import getPKG.*;
 import inputPKG.*;
 
 public class TermWin extends JFrame {
-	private static int windowWidthPx = (int)Math.floor(Constants.SCREEN_WIDTH/2);
-	private static int windowHeightPx = (int)Math.floor(Constants.SCREEN_HEIGHT/2);
-	private static int windowWidthGrid = (int)Math.floor(windowWidthPx/12);
-	private static int windowHeightGrid = (int)Math.floor(windowHeightPx/12);
+	private static int windowWidthPx = Math.floorDiv(Constants.SCREEN_WIDTH, 2);
+	private static int windowHeightPx = Math.floorDiv(Constants.SCREEN_HEIGHT, 2);
+	private static int windowWidthGrid = Math.floorDiv(windowWidthPx, 12);
+	private static int windowHeightGrid = Math.floorDiv(windowHeightPx, 12);
 	
 	protected static JPanel logPanel = new JPanel();
 	protected static JPanel enterPanel = new JPanel();
@@ -55,7 +55,6 @@ public class TermWin extends JFrame {
 		termLog.setEditable(false);
 		termLog.setLineWrap(true);
 		termLog.setWrapStyleWord(true);
-		
 		logPanel.add(termLog);
 		
 		add(logPanel);
@@ -67,8 +66,8 @@ public class TermWin extends JFrame {
 	public static Runnable updateFields() {
 		TermWin.windowWidthPx = Main.WINDOW.getWidth();
 		TermWin.windowHeightPx = Main.WINDOW.getHeight();
-		TermWin.windowWidthGrid = (int)Math.floor(TermWin.windowWidthPx/12);
-		TermWin.windowHeightGrid = (int)Math.floor(TermWin.windowHeightPx/12);
+		TermWin.windowWidthGrid = Math.floorDiv(TermWin.windowWidthPx, 12);
+		TermWin.windowHeightGrid = Math.floorDiv(TermWin.windowHeightPx, 12);
 		
 		TermWin.txtRows = (TermWin.windowHeightPx - 32) / 20;
 		TermWin.txtColumns = (TermWin.windowWidthPx - 16) / 8;
