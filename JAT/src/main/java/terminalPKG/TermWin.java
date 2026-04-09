@@ -1,6 +1,8 @@
 package terminalPKG;
 
 import javax.swing.*;
+
+import java.awt.*;
 import java.util.*;
 
 import mainPKG.*;
@@ -10,20 +12,21 @@ import getPKG.*;
 import inputPKG.*;
 
 public class TermWin extends JFrame {
+	private static GridBagConstraints gbc = new GridBagConstraints();
+	
 	private static int windowWidthPx = Math.floorDiv(Constants.SCREEN_WIDTH, 2);
 	private static int windowHeightPx = Math.floorDiv(Constants.SCREEN_HEIGHT, 2);
 	private static int windowWidthGrid = Math.floorDiv(windowWidthPx, 12);
 	private static int windowHeightGrid = Math.floorDiv(windowHeightPx, 12);
+	private static int txtRows = Math.floorDiv((windowHeightPx - 32), 20);
+	private static int txtColumns = Math.floorDiv((windowWidthPx - 16), 8);
 	
 	protected static JPanel logPanel = new JPanel();
 	protected static JPanel enterPanel = new JPanel();
 	protected static JTextField termEnter = new JTextField(windowWidthGrid);
-	
-	private static int txtRows = Math.floorDiv((windowHeightPx - 32), 20);
-	private static int txtColumns = Math.floorDiv((windowWidthPx - 16), 8);
-	
 	private static String enterTxt = termEnter.getText();
-	protected static JTextArea termLog = new JTextArea(txtRows, txtColumns);
+	protected static JTextArea termLog = new JTextArea();
+	private static JScrollPane logScr = new JScrollPane(logPanel, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 	
 	public static String getEnterTxt() {
 		enterTxt = termEnter.getText();
@@ -55,10 +58,11 @@ public class TermWin extends JFrame {
 		termLog.setEditable(false);
 		termLog.setLineWrap(true);
 		termLog.setWrapStyleWord(true);
-		logPanel.add(termLog);
+		gbc.fill = GridBagConstraints.BOTH;
+		logPanel.add(termLog, gbc);
 		
-		add(logPanel);
-		add(enterPanel);
+		add(logScr, BorderLayout.CENTER);
+		add(enterPanel, BorderLayout.SOUTH);
 		
 		setVisible(true);
 	}
