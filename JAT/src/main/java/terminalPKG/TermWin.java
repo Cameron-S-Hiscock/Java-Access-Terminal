@@ -1,85 +1,64 @@
 package terminalPKG;
 
 import javax.swing.*;
-
 import java.awt.*;
 import java.util.*;
 
 import mainPKG.*;
 
-import constantsPKG.*;
-import getPKG.*;
+import constantPKG.*;
 import inputPKG.*;
+import debugPKG.*;
 
 public class TermWin extends JFrame {
-	private static GridBagConstraints gbc = new GridBagConstraints();
-	
-	private static int windowWidthPx = Math.floorDiv(Constants.SCREEN_WIDTH, 2);
-	private static int windowHeightPx = Math.floorDiv(Constants.SCREEN_HEIGHT, 2);
-	private static int windowWidthGrid = Math.floorDiv(windowWidthPx, 12);
-	private static int windowHeightGrid = Math.floorDiv(windowHeightPx, 12);
-	private static int txtRows = Math.floorDiv((windowHeightPx - 32), 20);
-	private static int txtColumns = Math.floorDiv((windowWidthPx - 16), 8);
+	public static int windowWidthPx = (int)Math.floor(Constants.SCREEN_WIDTH/2);
+	public static int windowHeightPx = (int)Math.floor(Constants.SCREEN_HEIGHT/2);
+	public static int windowWidthGrid = (int)Math.floor(windowWidthPx/12);
+	public static int windowHeightGrid = (int)Math.floor(windowHeightPx/12);
 	
 	protected static JPanel logPanel = new JPanel();
 	protected static JPanel enterPanel = new JPanel();
 	protected static JTextField termEnter = new JTextField(windowWidthGrid);
-	private static String enterTxt = termEnter.getText();
-	protected static JTextArea termLog = new JTextArea();
-	private static JScrollPane logScr = new JScrollPane(logPanel, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 	
-	public static String getEnterTxt() {
-		enterTxt = termEnter.getText();
-		return enterTxt;
-	}
+	protected static int txtRows = (windowHeightPx - 32) / 20;
+	protected static int txtColumns = (windowWidthPx - 16) / 8;
 	
-	private static void recordGet() {
-		GetClass.getMethods.put("enterTxt", TermWin::getEnterTxt);
-	}
-	
-	private static void recordSet() {
-		;
-	}
+	protected static JList<String> termLog = new JList<String>();
+	protected static DefaultListModel<String> termLogList = new DefaultListModel<String>();
 	
 	public TermWin() {
-		recordGet();
-		recordSet();
-		
-		setTitle("Java Access Terminal");
+		setTitle("Java Accessd Terminal");
 		setSize(windowWidthPx,windowHeightPx);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLocationRelativeTo(null);
-
-		termEnter.addKeyListener(new KeyInput());
+		
 		termEnter.setFocusable(true);
 		enterPanel.add(termEnter);
 		
-		termLog.setFocusable(false);
-		termLog.setEditable(false);
-		termLog.setLineWrap(true);
-		termLog.setWrapStyleWord(true);
-		gbc.fill = GridBagConstraints.BOTH;
-		logPanel.add(termLog, gbc);
+		//add(Debug.debugPanel);
+		add(logPanel);
+		add(enterPanel);
 		
-		add(logScr, BorderLayout.CENTER);
-		add(enterPanel, BorderLayout.SOUTH);
+		termLog.setFocusable(false);
+		
+		logPanel.add(termLog);
 		
 		setVisible(true);
 	}
 	
-	public static Runnable updateFields() {
+	public static void createGrid() {
+		for (int i = 0; i <= txtRows; i++) {
+			termLogList.add(i, "Blank");
+		}
+	}
+	
+	public static void updateFields() {
 		TermWin.windowWidthPx = Main.WINDOW.getWidth();
 		TermWin.windowHeightPx = Main.WINDOW.getHeight();
-		TermWin.windowWidthGrid = Math.floorDiv(TermWin.windowWidthPx, 12);
-		TermWin.windowHeightGrid = Math.floorDiv(TermWin.windowHeightPx, 12);
+		TermWin.windowWidthGrid = (int)Math.floor(TermWin.windowWidthPx/12);
+		TermWin.windowHeightGrid = (int)Math.floor(TermWin.windowHeightPx/12);
 		
-		TermWin.txtRows = Math.floorDiv((TermWin.windowHeightPx - 32), 20);
-		TermWin.txtColumns = Math.floorDiv((TermWin.windowWidthPx - 16), 8);
-		
-		TermWin.enterTxt = TermWin.termEnter.getText();
-		
-		TermWin.termEnter.setColumns(TermWin.windowWidthGrid);
-		
-		return null;
+		TermWin.txtRows = (TermWin.windowHeightPx - 32) / 20;
+		TermWin.txtColumns = (TermWin.windowWidthPx - 16) / 8;
 	}
 }

@@ -1,13 +1,24 @@
 package mainPKG;
 
-import terminalPKG.*;
-import updatePKG.*;
+import java.awt.*;
+import java.util.*;
+import javax.swing.*;
 
-public class Main extends Thread {
+import constantPKG.*;
+import terminalPKG.*;
+import userPKG.*;
+import debugPKG.*;
+import inputPKG.*;
+
+public class Main extends Thread{
 	public static final TermWin WINDOW = new TermWin();
-	public static final Update UPDATER = new Update();
+	
+	public void run() {
+		TermWin.updateFields();
+		Debug.showKeyInput();
+	}
 	
     public static void main(String[] args) {
-    	;
+    	
     }
 }

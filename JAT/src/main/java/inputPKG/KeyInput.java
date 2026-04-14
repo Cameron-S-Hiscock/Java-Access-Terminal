@@ -1,35 +1,34 @@
 package inputPKG;
 
+import java.awt.*;
 import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
+
 import javax.swing.JOptionPane;
 
-import terminalPKG.*;
-import getPKG.*;
+import mainPKG.*;
 
-public class KeyInput implements KeyListener {
-	private static int keyCode;
-	private static char keyChar;
-	
-	
+import terminalPKG.*;
+
+public class KeyInput {
 	//@Override
 	
 	public void keyPressed(KeyEvent e) {
-		keyCode = e.getKeyCode();
-		keyChar = e.getKeyChar();
+		int keyCode = e.getKeyCode();
 		switch(keyCode) {
 			case KeyEvent.VK_ENTER:
-				TermLog.logTxt(GetClass.getMethods.getOrDefault("enterTxt", null).get());
+				JOptionPane.showMessageDialog(null, "Text Logged", "Text Log", JOptionPane.INFORMATION_MESSAGE);
+				TermLog.logTxt(TermLog.enterTxt);
+				TermLog.enterTxt = null;
 			default:
 				;
 		}
 	}
 	
 	public void keyReleased(KeyEvent e) {
-		;
+		int keyCode = e.getKeyCode();
 	}
 	
 	public void keyTyped(KeyEvent e) {
-		;
+		int keyCode = e.getKeyCode();
 	}
 }
